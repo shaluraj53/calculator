@@ -23,4 +23,4 @@ Incoming request should have below fields as part of mocking
 - inside items array, category field is used to check if product is grocery or not. If value is passed as Grocery(Ignorecase) no percentage discounts will be applied
   
 Response is an order structure, where discounts applied to each product can be seen in DiscountInfo and PriceInfo sections  
-Net Payable amount is given in "data.priceInfo.<targetCurrency>.netPrice"
+** Net Payable amount is given in "data.priceInfo.targetCurrency.netPrice" field of response **
