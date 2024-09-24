@@ -55,8 +55,9 @@ public class OrderDiscountCalculator implements Calculator {
         double discountInUSD = hundreds * amountOff;
         netPriceInUSD = netPriceInUSD - discountInUSD;
 
-        netPrice = netPriceInUSD / conversionRate;
-        double discount = discountInUSD / conversionRate;
+        conversionRate = getExchangeConversionRate("USD", currency);
+        netPrice = netPriceInUSD * conversionRate;
+        double discount = discountInUSD * conversionRate;
         priceInfo.setNetPrice(MathUtil.roundToTwoDecimalPoint(netPrice).doubleValue());
 
         DiscountInfo discountInfo = new DiscountInfo();
