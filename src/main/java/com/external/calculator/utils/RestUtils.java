@@ -1,6 +1,7 @@
 package com.external.calculator.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +11,8 @@ public class RestUtils {
 
     private final RestTemplate restTemplate;
 
+    private static final Logger logger = LoggerFactory.getLogger(RestUtils.class);
+
     public RestUtils(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -18,6 +21,7 @@ public class RestUtils {
         try {
             return restTemplate.getForObject(url, responseType);
         } catch (HttpClientErrorException e) {
+            logger.error("Error during REST Call", e);
             return null;
         }
     }

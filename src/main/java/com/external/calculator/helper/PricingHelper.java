@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.external.calculator.dto.Order;
 import com.external.calculator.dto.OrderPriceInput;
-import com.external.calculator.dto.PriceInfo;
 import com.external.calculator.dto.User;
+import java.util.HashMap;
 
 @Component
 public class PricingHelper {
@@ -24,7 +24,7 @@ public class PricingHelper {
             user.setCreatedOn(priceInput.getUserCreatedOn());
 
             order.setUserInfo(user);
-            order.setPriceInfo(new PriceInfo());
+            order.setPriceInfo(new HashMap<>());
         }
 
         return order;

@@ -2,6 +2,7 @@ package com.external.calculator.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +17,7 @@ public class Order {
 
     private List<Item> items;
 
-    private PriceInfo priceInfo;
+    private Map<String, PriceInfo> priceInfo;
 
     @JsonIgnore
     private User userInfo;

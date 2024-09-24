@@ -8,5 +8,4 @@ public interface CalculatorService {
 
     public Order calculateOrderPrice(final OrderPriceInput orderPriceInput);
 
-    public ExchangeRate getExchangeRate(String baseCurrency);
 }

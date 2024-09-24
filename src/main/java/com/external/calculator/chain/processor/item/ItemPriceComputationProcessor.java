@@ -12,6 +12,7 @@ import com.external.calculator.chain.processor.ChainProcessor;
 import com.external.calculator.dto.Item;
 import com.external.calculator.dto.Order;
 import com.external.calculator.dto.PriceInfo;
+import com.external.calculator.utils.MathUtil;
 
 @Component
 public class ItemPriceComputationProcessor implements ChainProcessor {
@@ -34,13 +35,13 @@ public class ItemPriceComputationProcessor implements ChainProcessor {
                 double totalPrice = item.getQuantity() * item.getUnitPrice();
                 double convertedTotalPrice = totalPrice * chainContext.getConversionRate();
                 PriceInfo basePriceInfo = new PriceInfo();
-                basePriceInfo.setTotalPrice(totalPrice);
-                basePriceInfo.setNetPrice(totalPrice);
+                basePriceInfo.setTotalPrice(MathUtil.roundToTwoDecimalPoint(totalPrice).doubleValue());
+                basePriceInfo.setNetPrice(MathUtil.roundToTwoDecimalPoint(totalPrice).doubleValue());
                 priceInfo.put(chainContext.getBaseCurrency(), basePriceInfo);
 
                 PriceInfo foreignPriceInfo = new PriceInfo();
-                foreignPriceInfo.setTotalPrice(convertedTotalPrice);
-                foreignPriceInfo.setNetPrice(convertedTotalPrice);
+                foreignPriceInfo.setTotalPrice(MathUtil.roundToTwoDecimalPoint(convertedTotalPrice).doubleValue());
+                foreignPriceInfo.setNetPrice(MathUtil.roundToTwoDecimalPoint(convertedTotalPrice).doubleValue());
                 priceInfo.put(chainContext.getForeignCurrency(), foreignPriceInfo);
 
                 chainContext.setCurrentItem(item);
